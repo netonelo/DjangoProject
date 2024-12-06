@@ -1,34 +1,21 @@
 from django.contrib import admin
-
-# Register your models here.
-
 from .models import Author, Genre, Book, BookInstance
 
-admin.site.register(Book)
-admin.site.register(Author)
-admin.site.register(Genre)
-admin.site.register(BookInstance)
-
-# admin.site.register(Author)
-
+# Определите класс администрирования для Author
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
 
-
-# Register the admin class with the associated model
+# Зарегистрируйте Author с кастомным классом администрирования
 admin.site.register(Author, AuthorAdmin)
 
-#admin.site.register(Book)
-#admin.site.register(BookInstance)
-
-# Register the Admin classes for Book using the decorator
-
-@admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'author', 'display_genre')
 
-# Register the Admin classes for BookInstance using the decorator
-
+# Определите класс администрирования для BookInstance
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ('status', 'due_back')
+
+
+# Зарегистрируйте Genre без кастомного класса администрирования
+admin.site.register(Genre)
