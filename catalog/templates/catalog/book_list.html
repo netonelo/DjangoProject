@@ -1,0 +1,21 @@
+{% extends "basic.html" %}
+
+{% block content %}
+    <h1>Список книг</h1>
+
+    {% if book_list %}
+    <ul>
+
+      {% for book in book_list %}
+      <li>
+        <a href="{{ book.get_absolute_url }}"
+        style="color: {% if book.genre_count == 1 %}green{% elif book.genre_count == 2 %}blue{% elif book.genre_count >= 3 %}red{% endif %};">
+            {{ book.title }}</a> ({{book.author}})
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>В списке нет книг.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<h1>Local Library - Главная</h1>
+
+  <p>Добро пожаловать на <em>LocalLibrary</em>.</p>
+
+  <p>В библиотеке имеется информация о следующих данных:</p>
+  <ul>
+    <li><strong>Книги:</strong> {{ num_books }}</li>
+    <li><strong>Копии:</strong> {{ num_instances }}</li>
+    <li><strong>Доступные копии:</strong> {{ num_instances_available }}</li>
+    <li><strong>Авторы:</strong> {{ num_authors }}</li>
+  </ul>
+
+  <p>
+    Количество ваших посещений этой страницы {{ num_visits }}{% if num_visits == 1 %} time{%
+    else %} times{% endif %}.
+  </p>
+
+{% endblock %}
